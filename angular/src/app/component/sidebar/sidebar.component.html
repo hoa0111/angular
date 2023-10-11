@@ -1,0 +1,108 @@
+<section id="sidebar">
+	<a href="#" class="brand">
+		<i class="bi bi-person-circle"></i>
+		<span class="text">Quản lí dự án</span>
+	</a>
+	<ul class="side-menu top">
+		<li class="active">
+			<a routerLink="leader/form">
+				<i class='bx bxs-dashboard'></i>
+				<span class="text">Dashboard</span>
+			</a>
+		</li>
+		<div class="dropdown">
+			<div class="dropdown_select">
+				<li>
+					<a href="#">
+						<i class="bx bi bi-projector"></i>
+						<span class="text">Dự Án <i class="bi bi-caret-down-fill ml-4"></i> </span>
+					</a>
+				</li>
+				<ul class="dropdown_list">
+					<li class="dropdown_item">
+						<a routerLink="leader/admin/them"><span class="dropdown_text">Thêm dự
+                án</span></a>
+
+					</li>
+					<li class="dropdown_item">
+						<a routerLink="leader/admin/sp"><span class="dropdown_text">Danh sách dự
+                án</span></a>
+
+					</li>
+				</ul>
+			</div>
+		</div>
+
+		<div class="dropdown">
+			<div class="dropdown_select">
+				<li>
+					<a>
+						<i class="bx bi bi-list-task"></i>
+						<span class="text" role="button">Nhiệm vụ<i class="bi bi-caret-down-fill ml-4"></i> </span>
+					</a>
+				</li>
+				<ul class="dropdown_list">
+					<li class="dropdown_item">
+						<a routerLink="leader/task/add"><span class="dropdown_text">Thêm nhiệm
+                vụ</span></a>
+
+					</li>
+					<li class="dropdown_item">
+						<a href="#" routerLink="leader/task/list"><span class="dropdown_text">Danh sách nhiệm
+                vụ</span></a>
+
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="dropdown">
+			<div class="dropdown_select">
+				<li>
+					<a href="#">
+						<i class='bx bxs-group'></i>
+						<span class="text">Nhân viên<i class="bi bi-caret-down-fill ml-4"></i> </span>
+					</a>
+				</li>
+				<ul class="dropdown_list">
+					<li class="dropdown_item">
+						<a href="#" routerLink="leader/staff/add"><span class="dropdown_text">Thêm nhân
+                viên</span></a>
+
+					</li>
+					<li class="dropdown_item">
+						<a href="#" routerLink="leader/staff/list" ><span class="dropdown_text">Danh sách
+                nhân viên</span></a>
+
+					</li>
+				</ul>
+			</div>
+		</div>
+	</ul>
+	<ul class="side-menu">
+		<li>
+			<a href="#">
+				<i class='bx bxs-cog'></i>
+				<span class="text">Cài đặt</span>
+			</a>
+		</li>
+		<li class="nav-item dropdown m-4">
+			<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+			   aria-haspopup="true" aria-expanded="false">
+				Tài Khoản
+			</a>
+			<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+				<a class="dropdown-item m-2" href="#" routerLink="login">Đăng Nhập</a>
+				<a class="dropdown-item m-2" href="#" routerLink="register">Đăng Ký</a>
+				<span *ngIf="false === false">
+          <a class="dropdown-item m-2" href="#">Đổi Mật Khẩu</a>
+        </span>
+
+			</div>
+		</li>
+		<li>
+			<a>
+				<button class="btn btn-danger"><span class="text m-4"><i class="bi bi-arrow-left m-1"></i>Thoát</span></button>
+			</a>
+		</li>
+	</ul>
+</section>

@@ -1,0 +1,21 @@
+# Lưu ý tiền tố ko bắt đầu bằng /api vì nó đã được config trong server.servlet.context-path=/api
+# Các đầu api phải thụt lề vào 1 tab
+permitAll()
+	/v2/auth
+	/v2/auth/anonymous
+	/category/findAll
+	/v2/story/findBySearch
+	/story/**
+	**
+role(ADMIN)
+#	/user/**
+	/role/**
+	/permission/**
+	/role-permission/**
+	/user-role/*
+authenticated()
+	/v2/chapter-image/**
+anonymous()
+	/user/save
+	/user/**
+	/story-detail/**
