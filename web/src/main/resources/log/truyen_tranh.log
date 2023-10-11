@@ -166,3 +166,75 @@
 2023-10-11 17:02:46 DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
 2023-10-11 17:02:46 DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [{accessToken=Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0aG9sdjEyMyIsImlhdCI6MTY5NzAxODU2NiwiZXhwIjoxNjk (truncated)...]
 2023-10-11 17:02:46 DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2023-10-11 17:34:08 INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-10-11 17:34:08 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2023-10-11 17:34:08 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2023-10-11 17:34:13 INFO  vn.tholv.web.WebApplication - Starting WebApplication using Java 19.0.2 with PID 7868 (C:\Users\Admin\Desktop\angular\angular\web\build\classes\java\main started by Admin in C:\Users\Admin\Desktop\angular\angular\web)
+2023-10-11 17:34:13 INFO  vn.tholv.web.WebApplication - No active profile set, falling back to 1 default profile: "default"
+2023-10-11 17:34:14 INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-10-11 17:34:14 INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 44 ms. Found 3 JPA repository interfaces.
+2023-10-11 17:34:14 INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 9999 (http)
+2023-10-11 17:34:14 INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2023-10-11 17:34:14 INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.13]
+2023-10-11 17:34:14 INFO  o.a.c.c.C.[.[localhost].[/api] - Initializing Spring embedded WebApplicationContext
+2023-10-11 17:34:14 INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 922 ms
+2023-10-11 17:34:14 INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-10-11 17:34:14 INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.3.1.Final
+2023-10-11 17:34:14 INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2023-10-11 17:34:14 INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2023-10-11 17:34:14 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2023-10-11 17:34:15 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@4e7bc939
+2023-10-11 17:34:15 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2023-10-11 17:34:15 WARN  org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2023-10-11 17:34:15 INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2023-10-11 17:34:15 DEBUG org.hibernate.SQL - 
+    create table projects (
+        id serial not null,
+        created_date timestamp(6),
+        modified_date timestamp(6),
+        money bytea,
+        name varchar(255),
+        start_date timestamp(6),
+        leader_id integer,
+        primary key (id)
+    )
+2023-10-11 17:34:15 DEBUG org.hibernate.SQL - 
+    alter table if exists users 
+       add column project_id integer
+2023-10-11 17:34:15 DEBUG org.hibernate.SQL - 
+    alter table if exists projects 
+       add constraint FK7uqjwo7rwcmh3grohbxf6aojx 
+       foreign key (leader_id) 
+       references users
+2023-10-11 17:34:15 DEBUG org.hibernate.SQL - 
+    alter table if exists users 
+       add constraint FKj4xjs6i0exxcgearpuykol477 
+       foreign key (project_id) 
+       references projects
+2023-10-11 17:34:15 INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-10-11 17:34:16 DEBUG o.s.web.filter.CorsFilter - Filter 'corsFilter' configured for use
+2023-10-11 17:34:16 WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-10-11 17:34:16 INFO  v.t.w.c.override.util.SecurityPath - path security: /v2/auth
+2023-10-11 17:34:16 INFO  v.t.w.c.override.util.SecurityPath - path security: /v2/auth/anonymous
+2023-10-11 17:34:16 INFO  v.t.w.c.override.util.SecurityPath - path security: /category/findAll
+2023-10-11 17:34:16 INFO  v.t.w.c.override.util.SecurityPath - path security: /v2/story/findBySearch
+2023-10-11 17:34:16 INFO  v.t.w.c.override.util.SecurityPath - path security: /story/**
+2023-10-11 17:34:16 INFO  v.t.w.c.override.util.SecurityPath - path security: **
+2023-10-11 17:34:16 INFO  v.t.w.c.override.util.SecurityPath - path security: /role/**
+2023-10-11 17:34:16 INFO  v.t.w.c.override.util.SecurityPath - path security: /permission/**
+2023-10-11 17:34:16 INFO  v.t.w.c.override.util.SecurityPath - path security: /role-permission/**
+2023-10-11 17:34:16 INFO  v.t.w.c.override.util.SecurityPath - path security: /user-role/*
+2023-10-11 17:34:16 INFO  v.t.w.c.override.util.SecurityPath - path security: /v2/chapter-image/**
+2023-10-11 17:34:16 INFO  v.t.w.c.override.util.SecurityPath - path security: /user/save
+2023-10-11 17:34:16 INFO  v.t.w.c.override.util.SecurityPath - path security: /user/**
+2023-10-11 17:34:16 INFO  v.t.w.c.override.util.SecurityPath - path security: /story-detail/**
+2023-10-11 17:34:16 DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - 3 mappings in 'requestMappingHandlerMapping'
+2023-10-11 17:34:16 DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+2023-10-11 17:34:16 INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@43735ea0, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@535aa7c7, org.springframework.security.web.context.SecurityContextHolderFilter@267a8777, org.springframework.security.web.header.HeaderWriterFilter@26619e5, org.springframework.security.web.authentication.logout.LogoutFilter@2ef63b6d, vn.tholv.web.config.filter.JwtAuthFilter@402c415e, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@623bdc46, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@411576c7, org.springframework.security.web.session.SessionManagementFilter@11c40a65, org.springframework.security.web.access.ExceptionTranslationFilter@5bfeb9ba, org.springframework.security.web.access.intercept.AuthorizationFilter@4abb4041]
+2023-10-11 17:34:16 DEBUG o.s.w.s.m.m.a.RequestMappingHandlerAdapter - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2023-10-11 17:34:16 DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - ControllerAdvice beans: 1 @ExceptionHandler, 1 ResponseBodyAdvice
+2023-10-11 17:34:16 INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 9999 (http) with context path '/api'
+2023-10-11 17:34:16 INFO  vn.tholv.web.WebApplication - Started WebApplication in 3.739 seconds (process running for 4.327)
+2023-10-11 17:37:21 INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-10-11 17:37:21 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2023-10-11 17:37:21 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.

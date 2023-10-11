@@ -12,7 +12,6 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
-import vn.tholv.web.core.base.constant.UserConst;
 import vn.tholv.web.core.base.entity.core.BaseEntity;
 
 import java.util.Collection;
@@ -22,7 +21,8 @@ import java.util.Set;
 @Entity
 @Table(name = "users")
 @Setter
-@Getter@NoArgsConstructor
+@Getter
+@NoArgsConstructor
 @AllArgsConstructor
 @DynamicUpdate
 public class User extends BaseEntity<User, Integer> implements UserDetails {
@@ -36,8 +36,12 @@ public class User extends BaseEntity<User, Integer> implements UserDetails {
 
     @Transient
     private String rePassword;
-    private short level = UserConst.LEVEL_BRONZE;
-    private short status = UserConst.STATUS_ACTIVE;
+    @ManyToOne
+    @JoinColumn(name = "project_id")
+    private Project project;
+
+    @OneToMany(mappedBy = "user")
+    private Set<Task> taskList = new HashSet<>();
 
     @JoinTable(name = "user_role",
         joinColumns = @JoinColumn(name = "user_id"),
@@ -84,8 +88,8 @@ public class User extends BaseEntity<User, Integer> implements UserDetails {
         if (authentication == null) {
             return null;
         }
-        if(authentication.isAuthenticated()) {
-            if(authentication.getPrincipal() instanceof User) {
+        if (authentication.isAuthenticated()) {
+            if (authentication.getPrincipal() instanceof User) {
                 return (User) authentication.getPrincipal();
             }
         }

@@ -32,7 +32,7 @@ export class RegisterComponent implements OnInit {
 			recaptcha: ['', Validators.compose([Validators.required])]
 		})
 		this.dataStorageService.navbar = false;
-		this.dataStorageService.navbar = false;
+		this.dataStorageService.menu = false;
 	}
 
 	get formControls() {
