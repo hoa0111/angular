@@ -1,0 +1,25 @@
+<section id="content">
+	<main>
+		<h2 class="text-center" *ngIf="id === 0">Thêm mới dự án</h2>
+		<h2 class="text-center" *ngIf="id !== 0">Cập nhật dự án</h2>
+		<form [formGroup]="form" class="align-items-center" (keyup.enter)="onSubmit()">
+			<div class="justify-content-start">
+				<div class="form-group row mb-3">
+					<label for="name" class="form-label col-2">Username</label>
+					<input type="text" id="name" formControlName="username" class="form-control col-10">
+				</div>
+				<div class="form-group row mb-3">
+					<label for="name" class="form-label col-2">Password</label>
+					<input type="text" id="password" formControlName="password" class="form-control col-10">
+				</div>
+				<div class="form-group row mb-3">
+					<label for="money" class="form-label col-2">Email</label>
+					<input type="text" id="money" formControlName="email" class="form-control col-10">
+				</div>
+			</div>
+			<div class="justify-content-end">
+				<button class="btn btn-primary" type="submit" (click)="onSubmit()">Submit</button>
+			</div>
+		</form>
+	</main>
+</section>

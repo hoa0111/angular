@@ -29,8 +29,8 @@ public abstract class AbstractService<T extends BaseEntity<T, ID>, ID> implement
     protected boolean isValidate = true;
 
     @Override
-    public T findById(String id) throws Exception {
-        return this.repository.findById(this.getIdFromEncrypt(id)).orElse(null);
+    public T findById(ID id) throws Exception {
+        return this.repository.findById(id).orElse(null);
     }
 
     @Override
@@ -42,14 +42,14 @@ public abstract class AbstractService<T extends BaseEntity<T, ID>, ID> implement
 
     @Override
     @Transactional(rollbackOn = RuntimeException.class)
-    public void deleteById(String id) throws Exception {
-        this.repository.deleteById(this.getIdFromEncrypt(id));
+    public void deleteById(ID id) throws Exception {
+        this.repository.deleteById(id);
     }
 
     @Override
     @Transactional(rollbackOn = RuntimeException.class)
     public T update(T entity) throws Exception {
-        T oldEntity = this.repository.findById(getIdFromEncrypt(entity.getUid())).orElse(null);
+        T oldEntity = this.repository.findById(entity.getId()).orElse(null);
         if (oldEntity == null) {
             throw new RuntimeException("Có lỗi xảy ra khi cập nhật dữ liệu");
         }
@@ -130,19 +130,6 @@ public abstract class AbstractService<T extends BaseEntity<T, ID>, ID> implement
             return entity.getClass().getDeclaredField(PRIORITY_FIELD_NAME) != null;
         } catch (Exception e) {
             return false;
-        }
-    }
-
-    private ID getIdFromEncrypt(String idHash) throws Exception {
-        try{
-            if (idHash == null) return null;
-            String idDecode = CryptoUtils.decrypt(idHash);
-            if (idDecode == null) return null;
-            if (idDecode.matches("[0-9]+"))
-                return (ID) Integer.valueOf(idDecode);
-            return null;
-        }catch (Exception e){
-            throw new Exception("Có lỗi xảy ra khi giải mã dữ liệu, dữ liệu của bạn không an toàn");
         }
     }
 

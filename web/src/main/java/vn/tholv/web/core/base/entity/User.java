@@ -40,9 +40,6 @@ public class User extends BaseEntity<User, Integer> implements UserDetails {
     @JoinColumn(name = "project_id")
     private Project project;
 
-    @OneToMany(mappedBy = "user")
-    private Set<Task> taskList = new HashSet<>();
-
     @JoinTable(name = "user_role",
         joinColumns = @JoinColumn(name = "user_id"),
         inverseJoinColumns = @JoinColumn(name = "role_id"))

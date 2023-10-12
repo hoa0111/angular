@@ -1,0 +1,32 @@
+<section id="content">
+	<main>
+		<h1 class="center">Danh sách nhân viên</h1>
+		<br>
+		<table class="table table-hover table-striped table-bordered">
+			<thead>
+			<tr class="text-center">
+				<th>STT</th>
+				<th>Username</th>
+				<th>Email</th>
+				<th>Chức năng</th>
+			</tr>
+			</thead>
+			<tbody *ngIf="!isLoading">
+			<tr *ngFor="let user of userList;let i = index">
+				<td class="center">{{i + 1}}</td>
+				<td class="center">{{user.username}}</td>
+				<td class="center">{{user.email}}</td>
+				<td class="center">
+					<a [routerLink]="user.id?.toString()" title="Chi tiết">
+						<i class="bi bi-pencil-fill"></i>
+					</a>
+				</td>
+			</tr>
+			<tr *ngIf="userList.length === 0">
+				<td colspan="5" class="text-center">Không có dữ liệu</td>
+			</tr>
+			</tbody>
+		</table>
+		<app-spinner [isLoading]="isLoading"></app-spinner>
+	</main>
+</section>

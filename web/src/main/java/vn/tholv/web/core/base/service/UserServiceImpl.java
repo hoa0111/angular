@@ -35,7 +35,8 @@ public class UserServiceImpl extends AbstractService<User, Integer> implements U
 
     @Override
     protected void validateInsert(User entity) {
-        validate(entity);
+        if (User.getCurrentUser() == null)
+            validate(entity);
     }
 
     @Override
@@ -58,12 +59,12 @@ public class UserServiceImpl extends AbstractService<User, Integer> implements U
     @Override
     public User update(User entity) throws Exception {
         if (isNull(entity.getPassword())) {
-            entity.setPassword(findById(entity.getUid()).getPassword());
+            entity.setPassword(findById(entity.getId()).getPassword());
         }
         return super.update(entity);
     }
 
-    private void validate(User entity){
+    private void validate(User entity) {
         if (isNull(entity)) {
             throw new RuntimeException("Dữ liệu không hợp lệ");
         }

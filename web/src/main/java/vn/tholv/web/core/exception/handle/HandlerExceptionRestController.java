@@ -8,7 +8,7 @@ import vn.tholv.web.core.exception.ExceptionError;
 
 import java.nio.file.AccessDeniedException;
 
-@RestControllerAdvice
+//@RestControllerAdvice
 public class HandlerExceptionRestController {
     @ExceptionHandler(RuntimeException.class)
     public ExceptionError handleException(Exception ex) {

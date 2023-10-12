@@ -53,13 +53,15 @@ export class LoginComponent implements OnInit {
 				if (data?.accessToken || data?.refreshToken) {
 					localStorage.setItem('token', <string>data.accessToken || <string>data.refreshToken);
 					localStorage.setItem('isLogin', 'true');
+					localStorage.setItem('username', JSON.stringify(data?.username));
 					this.toastrService.success('Đăng nhập thành công', 'Thành công');
-					this.router.navigateByUrl('/home');
+					document.location.href = '/home'
 					this.isLoading = false;
 				} else {
 					const error = data as ErrorException;
 					this.toastrService.error(error.detail, 'Lỗi');
 					this.isLoading = false;
+					this.reloadGoogleCaptcha();
 				}
 			}
 		});

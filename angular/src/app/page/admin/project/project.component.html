@@ -1,0 +1,42 @@
+<section id="content">
+	<main>
+		<h1 class="center">Danh sách dự án</h1>
+		<br>
+		<table class="table table-hover table-striped table-bordered">
+			<thead>
+			<tr class="text-center">
+				<th>STT</th>
+				<th>Ngày bắt đầu</th>
+				<th data-th="Driver details"><span>Tên dự án</span></th>
+				<th>Số tiền</th>
+				<th>Leader</th>
+				<th>Số thành viên</th>
+				<th>Chức năng</th>
+			</tr>
+			</thead>
+			<tbody *ngIf="!isLoading">
+			<tr *ngFor="let project of projectList;let i = index">
+				<td class="center">{{i + 1}}</td>
+				<td class="center">{{project.startDate | date :'dd/MM/yyyy hh:MM:ss'}}</td>
+				<td class="center">{{project.name}}</td>
+				<td class="center">{{project.money | number}}</td>
+				<td class="center">{{project?.leader?.username }}</td>
+				<td class="center">{{project?.memberCount}}</td>
+				<td class="center">
+					<a [routerLink]="project.id?.toString()" title="Chi tiết">
+						<i class="bi bi-pencil-fill"></i>
+					</a>
+					|
+					<a (click)="delete(project)" title="Xóa">
+						<i class="bi bi-trash-fill"></i>
+					</a>
+				</td>
+			</tr>
+			<tr *ngIf="projectList.length === 0">
+				<td colspan="5" class="text-center">Không có dữ liệu</td>
+			</tr>
+			</tbody>
+		</table>
+		<app-spinner [isLoading]="isLoading"></app-spinner>
+	</main>
+</section>

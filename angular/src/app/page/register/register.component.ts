@@ -56,12 +56,15 @@ export class RegisterComponent implements OnInit {
 			this.isLoading = false;
 		}
 		this.userService.save(this.form.value).subscribe((data: any) => {
-			if (data instanceof ErrorException) {
-				this.toastrService.error(data.detail, 'Lỗi');
-				this.isLoading = false;
-			} else {
-				this.toastrService.success('Đăng ký thành công', 'Thành công');
-				this.router.navigateByUrl('login')
+			if (data as ErrorException != null) {
+				if (data.isError) {
+					this.toastrService.error(data.detail, 'Lỗi');
+					this.isLoading = false;
+				}else {
+					this.toastrService.success('Đăng ký thành công', 'Thành công');
+					this.router.navigateByUrl('login')
+					this.isLoading = false;
+				}
 				this.isLoading = false;
 			}
 		});

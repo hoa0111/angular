@@ -1,13 +1,11 @@
 package vn.tholv.web.core.base.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import vn.tholv.web.core.base.constant.TaskConst;
 import vn.tholv.web.core.base.entity.core.BaseEntity;
 @Entity
 @Table(name = "tasks")
@@ -26,4 +24,10 @@ public class Task extends BaseEntity<Task, Integer> {
     private User user;
     private Integer status;
     private Integer priority;
+
+    @Override
+    protected void prePersist() {
+        super.prePersist();
+        this.status = TaskConst.OPEN_STATUS;
+    }
 }

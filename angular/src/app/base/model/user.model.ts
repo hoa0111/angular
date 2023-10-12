@@ -10,6 +10,19 @@ export class User extends BaseEntity{
 	public static isLogin(): boolean {
 		return localStorage.getItem('isLogin') === 'true' && localStorage.getItem('token') !== null;
 	}
+
+	public static logout(): void {
+		localStorage.removeItem('isLogin');
+		localStorage.removeItem('token');
+		localStorage.removeItem('user');
+	}
+
+	public static getCurrentUser(): User {
+		if (User.isLogin()) {
+			return JSON.parse(localStorage.getItem('user') as string);
+		}
+		throw new Error('User is not login');
+	}
 }
 
 export class AuthRequest {

@@ -31,7 +31,7 @@
 			<li>
 				<i class='bx bxs-group'></i>
 				<span class="text">
-          <p class="text-black"> Tình trạng đăng nhập: tholv</p>
+          <p *ngIf="User.isLogin()" class="text-black"> Tài khoản  : {{username}}</p>
         </span>
 			</li>
 			<li>

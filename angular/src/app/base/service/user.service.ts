@@ -12,7 +12,7 @@ export class UserService implements BaseService<User> {
 	}
 
 	findAll(): Observable<User[]> {
-		return this.http.get<User[]>(this.url);
+		return this.http.get<User[]>(this.url + '/findAll');
 	}
 
 	findById(id: number): Observable<User> {
@@ -20,14 +20,27 @@ export class UserService implements BaseService<User> {
 	}
 
 	save(t: User): Observable<User> {
-		return this.http.post<User>(`${this.url}/save`, t);
+		return this.http.post<User>(`${this.url}/save`, t, {headers: this.getHeader()});
+	}
+
+	create(t: User): Observable<User> {
+		return this.http.post<User>(`${this.url}/create`, t, {headers: this.getHeader()});
 	}
 
 	update(t: User): Observable<User> {
-		return this.http.put<User>(this.url + '/' + t.id, t);
+		return this.http.put<User>(this.url + '/' + t.id, t, {headers: this.getHeader()});
 	}
 
 	delete(id: number): Observable<void> {
 		return this.http.delete<void>(this.url + '/' + id);
+	}
+
+	private getHeader(){
+		const token = localStorage.getItem('token');
+		if (token) {
+			const headers = {Authorization: 'Bearer ' + token};
+			return headers;
+		}
+		return {};
 	}
 }

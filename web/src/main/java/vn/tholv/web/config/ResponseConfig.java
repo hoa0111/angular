@@ -19,8 +19,6 @@ public class ResponseConfig {
 	public ObjectMapper objectMapper() {
 		ObjectMapper objectMapper = new ObjectMapper();
 		objectMapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
-		objectMapper.setDateFormat(new SimpleDateFormat(DATE_FORMAT));
-		objectMapper.setTimeZone(getTimeZone(TIME_ZONE));
 		return objectMapper;
 	}
 }

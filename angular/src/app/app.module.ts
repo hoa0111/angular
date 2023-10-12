@@ -10,7 +10,7 @@ import {CommonModule} from "@angular/common";
 import {NgSelectModule} from '@ng-select/ng-select';
 import {TableModule} from 'primeng/table';
 import {ButtonModule} from 'primeng/button';
-import {NgbDropdownModule, NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {NgbDatepickerModule, NgbDropdownModule, NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {SpinnerModule} from "./component/spinner/spinner.module";
 import {AuthConfig} from "./base/config/auth.config";
 import {SidebarComponent} from './component/sidebar/sidebar.component';
@@ -20,7 +20,7 @@ import {NavbarComponent} from './component/navbar/navbar.component';
 	declarations: [
 		AppComponent,
 		SidebarComponent,
-		NavbarComponent,
+		NavbarComponent
 	],
 	imports: [
 		CommonModule,
@@ -29,6 +29,7 @@ import {NavbarComponent} from './component/navbar/navbar.component';
 		NgSelectModule,
 		NgbDropdownModule,
 		FormsModule,
+		NgbDatepickerModule,
 		ButtonModule,
 		NgbModule,
 		HttpClientModule,
@@ -61,6 +62,8 @@ import {NavbarComponent} from './component/navbar/navbar.component';
 	],
 	providers: [
 		{provide: HTTP_INTERCEPTORS, useClass: AuthConfig, multi: true},
+	],
+	exports: [
 	],
 	bootstrap: [AppComponent]
 })

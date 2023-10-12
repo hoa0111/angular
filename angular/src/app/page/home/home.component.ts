@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {User} from "../../base/model/user.model";
 
 @Component({
   selector: 'app-home',
@@ -6,5 +7,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
-
+	User = User;
+	username?: string;
+	constructor() {
+		this.username = localStorage.getItem('username') || '';
+	}
 }

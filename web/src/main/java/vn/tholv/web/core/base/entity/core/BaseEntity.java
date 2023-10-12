@@ -1,14 +1,11 @@
 package vn.tholv.web.core.base.entity.core;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
-import lombok.Getter;
 import vn.tholv.web.core.override.util.CloneObject;
-import vn.tholv.web.core.override.util.CryptoUtils;
 
 import java.io.Serializable;
-import java.sql.Timestamp;
+import java.util.Date;
 
 @MappedSuperclass
 @SuppressWarnings("all")
@@ -21,43 +18,35 @@ public class BaseEntity<T, ID> extends CloneObject<T> implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @JsonIgnore
     protected ID id;
 
-    protected Timestamp createdDate;
-    protected Timestamp modifiedDate;
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm")
+    protected Date createdDate;
 
-    @JsonProperty(_id)
-    @Transient
-    protected String uid;
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm")
+    protected Date modifiedDate;
 
     public ID getId() {
         return id;
     }
 
-    public String getUid() {
-        if (this.id != null) {
-            this.uid = CryptoUtils.encode(String.valueOf(this.id));
-        }
-        return this.uid;
-    }
 
-    public Timestamp getCreatedDate() {
+    public Date getCreatedDate() {
         return createdDate;
     }
 
-    public Timestamp getModifiedDate() {
+    public Date getModifiedDate() {
         return modifiedDate;
     }
 
     @PreUpdate
-    private void preUpdate() {
-        modifiedDate = new Timestamp(System.currentTimeMillis());
+    protected void preUpdate() {
+        modifiedDate = new Date();
     }
 
     @PrePersist
-    private void prePersist() {
-        Timestamp now = new Timestamp(System.currentTimeMillis());
+    protected void prePersist() {
+        Date now = new Date();
         createdDate = now;
         modifiedDate = now;
     }

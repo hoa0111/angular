@@ -1,0 +1,40 @@
+<section id="content">
+	<main>
+		<h1 class="center">Danh sách nhiệm vụ</h1>
+		<br>
+		<table class="table table-hover table-striped table-bordered">
+			<thead>
+			<tr class="text-center">
+				<th>STT</th>
+				<th>Tên Task</th>
+				<th>Người làm </th>
+				<th>Trạng thái</th>
+				<th>Chức năng</th>
+			</tr>
+			</thead>
+			<tbody *ngIf="!isLoading">
+			<tr *ngFor="let task of taskList;let i = index">
+				<td class="center">{{i + 1}}</td>
+				<td class="center">{{task.name}}</td>
+				<td class="center">{{task.user?.username}}</td>
+				<td class="center">
+					<span class="{{getBadgeClass(task.status)}}">{{Task.getStatus(task.status)}}</span>
+				</td>
+				<td class="center">
+					<a [routerLink]="task.id?.toString()" title="Chi tiết">
+						<i class="bi bi-pencil-fill"></i>
+					</a>
+					|
+					<a (click)="delete(task)" title="Xóa">
+						<i class="bi bi-trash-fill"></i>
+					</a>
+				</td>
+			</tr>
+			<tr *ngIf="taskList.length === 0">
+				<td colspan="5" class="text-center">Không có dữ liệu</td>
+			</tr>
+			</tbody>
+		</table>
+		<app-spinner [isLoading]="isLoading"></app-spinner>
+	</main>
+</section>
