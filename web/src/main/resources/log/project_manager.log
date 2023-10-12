@@ -59945,3 +59945,51 @@ java.lang.RuntimeException: Tên đăng nhập phải có độ dài từ 6 đ�
 2023-10-12 16:55:48 DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
 2023-10-12 16:55:48 DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [[vn.tholv.web.core.base.entity.User@72d7dbfd, vn.tholv.web.core.base.entity.User@483c742a]]
 2023-10-12 16:55:48 DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2023-10-12 16:56:09 DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /user/findAll
+2023-10-12 16:56:09 DEBUG o.s.security.web.FilterChainProxy - Secured OPTIONS /user/findAll
+2023-10-12 16:56:09 DEBUG o.s.security.web.FilterChainProxy - Securing GET /user/findAll
+2023-10-12 16:56:09 DEBUG o.s.security.web.FilterChainProxy - Secured GET /user/findAll
+2023-10-12 16:56:09 DEBUG o.s.web.servlet.DispatcherServlet - GET "/api/user/findAll", parameters={}
+2023-10-12 16:56:09 DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to vn.tholv.web.controller.UserController#findAll()
+2023-10-12 16:56:09 DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.created_date,
+        u1_0.email,
+        u1_0.modified_date,
+        u1_0.password,
+        u1_0.project_id,
+        u1_0.username 
+    from
+        users u1_0
+2023-10-12 16:56:09 DEBUG org.hibernate.SQL - 
+    select
+        rl1_0.user_id,
+        rl1_1.id,
+        rl1_1.created_date,
+        rl1_1.modified_date,
+        rl1_1.name 
+    from
+        user_role rl1_0 
+    join
+        roles rl1_1 
+            on rl1_1.id=rl1_0.role_id 
+    where
+        rl1_0.user_id=?
+2023-10-12 16:56:09 DEBUG org.hibernate.SQL - 
+    select
+        rl1_0.user_id,
+        rl1_1.id,
+        rl1_1.created_date,
+        rl1_1.modified_date,
+        rl1_1.name 
+    from
+        user_role rl1_0 
+    join
+        roles rl1_1 
+            on rl1_1.id=rl1_0.role_id 
+    where
+        rl1_0.user_id=?
+2023-10-12 16:56:09 DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
+2023-10-12 16:56:09 DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [[vn.tholv.web.core.base.entity.User@68ce3607, vn.tholv.web.core.base.entity.User@51655aa1]]
+2023-10-12 16:56:09 DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
